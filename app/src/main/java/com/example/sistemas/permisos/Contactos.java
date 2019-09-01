@@ -4,6 +4,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -15,15 +16,25 @@ public class Contactos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contactos);
 
+        TextView txtMensaje = (TextView)findViewById(R.id.textViewMensajeContactos);
+
+        txtMensaje.setVisibility(View.GONE);
+
         String color = getIntent().getStringExtra("color");
 
-        TextView txtMensaje = (TextView)findViewById(R.id.textViewMensajeContactos);
-        if(color.equals("verde")==true){
+        if(color.equals("verde"))
+        {
+            txtMensaje.setText("Permiso Aceptado");
             txtMensaje.setTextColor(Color.GREEN);
-            txtMensaje.setText("Permiso aceptado");
-        }else{
+            txtMensaje.setTextSize(24);
+            txtMensaje.setVisibility(View.VISIBLE);
+
+        }
+        if(color.equals("rojo"))
+        {
+            txtMensaje.setText("Permisos Denegados");
             txtMensaje.setTextColor(Color.RED);
-            txtMensaje.setText("Permiso denegado");
+            txtMensaje.setVisibility(View.VISIBLE);
         }
     }
 }
